@@ -3,9 +3,10 @@ import { Container, Form, FormGroup, Label, Input, Button, Alert } from 'reactst
 import { useForm, Controller } from 'react-hook-form';
 
 const AddHouseForm = () => {
-  const [locations, setLocations] = useState([]); 
+  const [priceRanges, setPriceRanges] = useState([]);
+  const [locations, setLocations] = useState([]);
   const [houseTypes, setHouseTypes] = useState([]);
-  const [price, setPrice] = useState(''); 
+  const { control, handleSubmit, formState: { errors }, register } = useForm();
 
   useEffect(() => {
     fetch(`http://localhost:8000/house_types`, {
@@ -35,10 +36,21 @@ const AddHouseForm = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  const { control, handleSubmit, formState: { errors }, register } = useForm();
+  useEffect(() => {
+    fetch(`http://localhost:8000/price_ranges`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setPriceRanges(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const onSubmit = (formData) => {
-    formData.price = price; 
     console.log('Form submitted:', formData);
     // Handle form submission logic here
   };
@@ -97,8 +109,8 @@ const AddHouseForm = () => {
                   {...field}
                   placeholder="Select location"
                 >
-                  <option value="">Select location</option>
-                  {locations.map((location) => ( 
+                  <option value="">Select location of the house</option>
+                  {locations.map((location) => (
                     <option key={location.id} value={location.id}>
                       {location.name}
                     </option>
@@ -110,14 +122,28 @@ const AddHouseForm = () => {
           {errors.location && <Alert color="danger">{errors.location.message}</Alert>}
         </FormGroup>
         <FormGroup>
-          <Label for="price">Price</Label>
-          <Input
-            type="number"
-            id="price"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            placeholder="Enter price"
+          <Label for="price">Price Range</Label>
+          <Controller
+            name="price"
+            control={control}
+            rules={{ required: 'Price Range is required' }}
+            render={({ field }) => (
+              <Input
+                type="select"
+                id="price"
+                {...field}
+                placeholder="Select price range"
+              >
+                <option value="">Select price range for expected rent per day</option>
+                {priceRanges.map((range) => (
+                  <option key={range.id} value={range.id}>
+                    ${range.min_price} - ${range.max_price}
+                  </option>
+                ))}
+              </Input>
+            )}
           />
+          {errors.price && <Alert color="danger">{errors.price.message}</Alert>}
         </FormGroup>
         <FormGroup>
           <Label for="image">Image URL</Label>
@@ -125,7 +151,7 @@ const AddHouseForm = () => {
             type="url"
             id="image"
             {...register('image', { required: 'Image URL is required' })}
-            placeholder="Enter image URL"
+            placeholder="Enter image URL of the house"
           />
           {errors.image && <Alert color="danger">{errors.image.message}</Alert>}
         </FormGroup>
@@ -135,7 +161,7 @@ const AddHouseForm = () => {
             type="textarea"
             id="description"
             {...register('description', { required: 'Description is required' })}
-            placeholder="Enter description"
+            placeholder="Enter description of the house"
           />
           {errors.description && <Alert color="danger">{errors.description.message}</Alert>}
         </FormGroup>
@@ -145,7 +171,7 @@ const AddHouseForm = () => {
             type="number"
             id="yearOfBirth"
             {...register('yearOfBirth', { required: 'Year of Birth is required' })}
-            placeholder="Enter year of birth"
+            placeholder="Enter your year of birth"
           />
           {errors.yearOfBirth && <Alert color="danger">{errors.yearOfBirth.message}</Alert>}
         </FormGroup>
@@ -156,3 +182,4 @@ const AddHouseForm = () => {
 };
 
 export default AddHouseForm;
+

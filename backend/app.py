@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from models.type import HouseType 
+from models.type import HouseType
 from models.location import Location
+from models.pricerange import PriceRange  
 
 app = FastAPI()
 
@@ -27,3 +28,7 @@ def get_locations():
     locations = Location.find_all()
     return locations
 
+@app.get('/price_ranges')
+def get_price_ranges():
+    price_ranges = PriceRange.find_all()
+    return price_ranges
