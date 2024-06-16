@@ -1,12 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from models.type import HouseType 
+from models.location import Location
 
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], 
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -20,4 +21,9 @@ def read_root():
 def get_house_types():
     house_types = HouseType.find_all()
     return house_types
+
+@app.get('/locations')
+def get_locations():
+    locations = Location.find_all()
+    return locations
 
