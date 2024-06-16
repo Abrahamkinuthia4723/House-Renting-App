@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';  
+import React, { useState, useEffect } from 'react';
 import { Container, Form, FormGroup, Label, Input, Button, Alert } from 'reactstrap';
 import { useForm, Controller } from 'react-hook-form';
 
 const AddHouseForm = () => {
+  const [locations, setLocations] = useState([]); 
   const [houseTypes, setHouseTypes] = useState([]);
+  const [price, setPrice] = useState(''); 
 
   useEffect(() => {
     fetch(`http://localhost:8000/house_types`, {
@@ -19,9 +21,24 @@ const AddHouseForm = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  useEffect(() => {
+    fetch(`http://localhost:8000/locations`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setLocations(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   const { control, handleSubmit, formState: { errors }, register } = useForm();
 
   const onSubmit = (formData) => {
+    formData.price = price; 
     console.log('Form submitted:', formData);
     // Handle form submission logic here
   };
@@ -36,7 +53,7 @@ const AddHouseForm = () => {
             type="text"
             id="name"
             {...register('name', { required: 'Name is required' })}
-            placeholder="Enter name"
+            placeholder="Enter your name"
           />
           {errors.name && <Alert color="danger">{errors.name.message}</Alert>}
         </FormGroup>
@@ -68,13 +85,39 @@ const AddHouseForm = () => {
         </FormGroup>
         <FormGroup>
           <Label for="location">Location</Label>
-          <Input
-            type="text"
-            id="location"
-            {...register('location', { required: 'Location is required' })}
-            placeholder="Enter location"
+          <Controller
+            name="location"
+            control={control}
+            rules={{ required: 'Location is required' }}
+            render={({ field }) => (
+              <>
+                <Input
+                  type="select"
+                  id="location"
+                  {...field}
+                  placeholder="Select location"
+                >
+                  <option value="">Select location</option>
+                  {locations.map((location) => ( 
+                    <option key={location.id} value={location.id}>
+                      {location.name}
+                    </option>
+                  ))}
+                </Input>
+              </>
+            )}
           />
           {errors.location && <Alert color="danger">{errors.location.message}</Alert>}
+        </FormGroup>
+        <FormGroup>
+          <Label for="price">Price</Label>
+          <Input
+            type="number"
+            id="price"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            placeholder="Enter price"
+          />
         </FormGroup>
         <FormGroup>
           <Label for="image">Image URL</Label>
@@ -113,7 +156,3 @@ const AddHouseForm = () => {
 };
 
 export default AddHouseForm;
-
-
-
-
