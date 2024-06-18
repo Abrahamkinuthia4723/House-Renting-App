@@ -36,13 +36,17 @@ How to access this project in your local machine.
 
 # Technologies used.
 
-1. Javascript
+### 1. Javascript
 
-2. Css
+### 2. Css
 
-3. Python.
+### 3. Python.
 
-4. Github.
+### 4. Github.
+
+# Contact details.
+
+github.com/Abrahamkinuthia4723
 
 # licence.
 
