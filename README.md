@@ -12,7 +12,27 @@ https://github.com/Abrahamkinuthia4723/House-Renting-App/assets/162336259/8ef3b6
 
 https://github.com/Abrahamkinuthia4723/House-Renting-App/assets/162336259/2c29c997-5fe2-4d1c-9d07-5498a3b4314f
 
+# Project description.
+
 ### My project is a house-renting-app that allows people to rent houses in different cities . It also has an add house form that allows people who for example are going on a long business trip overseas or on vacation elsewhere to rent out their houses to other people during that time through our agency.
+
+
+# Project setup instructions.
+
+How to access this project in your local machine.
+
+### 1. Fork this respiratory.
+
+### 2. Open your local terminal.
+
+### 3. Git clone the respiratory into your local terminal.
+
+### 4. cd into House-Renting-app folder.
+
+### 5. Finally, enter into your vs code by writing code . in your terminal and view the code.
+
+## note: This project belongs to Abraham Ngugi. even though you are allowed to view the code, you are prohibited from passing this code on as your own.
+
 
 # Technologies used.
 
@@ -23,3 +43,8 @@ https://github.com/Abrahamkinuthia4723/House-Renting-App/assets/162336259/2c29c9
 3. Python.
 
 4. Github.
+
+# licence.
+
+### The content of this site is licensed under the MIT license
+### Copyright (c) 2018.
