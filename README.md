@@ -29,7 +29,7 @@ How to access this project in your local machine.
 
 ### 4. cd into House-Renting-app folder.
 
-### 5. Finally, enter into your vs code by writing code . in your terminal and view the code.
+### 5. Finally, enter into your vs code  and view the code.
 
 ## note: This project belongs to Abraham Ngugi. even though you are allowed to view the code, you are prohibited from passing this code on as your own.
 
