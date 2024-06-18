@@ -8,4 +8,6 @@ https://github.com/Abrahamkinuthia4723/House-Renting-App/assets/162336259/935419
 
 https://github.com/Abrahamkinuthia4723/House-Renting-App/assets/162336259/7bf21c08-09ed-434f-8c15-272d9fa83ddb
 
-(https://github.com/Abrahamkinuthia4723/House-Renting-App/assets/162336259/8ef3b675-971c-4af8-b0b3-9cab32e4a63c
+https://github.com/Abrahamkinuthia4723/House-Renting-App/assets/162336259/8ef3b675-971c-4af8-b0b3-9cab32e4a63c
+
+https://github.com/Abrahamkinuthia4723/House-Renting-App/assets/162336259/2c29c997-5fe2-4d1c-9d07-5498a3b4314f
