@@ -11,3 +11,6 @@ https://github.com/Abrahamkinuthia4723/House-Renting-App/assets/162336259/7bf21c
 https://github.com/Abrahamkinuthia4723/House-Renting-App/assets/162336259/8ef3b675-971c-4af8-b0b3-9cab32e4a63c
 
 https://github.com/Abrahamkinuthia4723/House-Renting-App/assets/162336259/2c29c997-5fe2-4d1c-9d07-5498a3b4314f
+
+### My project is a house-renting-app that allows people to rent houses in different cities . It also has an add house form that allows people who for example are going on a long business trip overseas or on vacation elsewhere to rent out their houses to other people during that time through our agency.
+
