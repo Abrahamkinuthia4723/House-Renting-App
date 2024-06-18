@@ -14,3 +14,12 @@ https://github.com/Abrahamkinuthia4723/House-Renting-App/assets/162336259/2c29c9
 
 ### My project is a house-renting-app that allows people to rent houses in different cities . It also has an add house form that allows people who for example are going on a long business trip overseas or on vacation elsewhere to rent out their houses to other people during that time through our agency.
 
+# Technologies used.
+
+1. Javascript
+
+2. Css
+
+3. Python.
+
+4. Github.
