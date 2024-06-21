@@ -6,53 +6,71 @@ const AddHouseForm = () => {
   const [priceRanges, setPriceRanges] = useState([]);
   const [locations, setLocations] = useState([]);
   const [houseTypes, setHouseTypes] = useState([]);
-  const { control, handleSubmit, formState: { errors }, register } = useForm();
+  const { control, handleSubmit, formState: { errors }, register, reset } = useForm();
 
   useEffect(() => {
+    fetchHouseTypes();
+    fetchLocations();
+    fetchPriceRanges();
+  }, []);
+
+  const fetchHouseTypes = () => {
     fetch(`http://localhost:8000/house_types`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
     })
-      .then((res) => res.json())
-      .then((data) => {
-        setHouseTypes(data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    .then((res) => res.json())
+    .then((data) => {
+      setHouseTypes(data);
+    })
+    .catch((err) => console.log(err));
+  };
 
-  useEffect(() => {
+  const fetchLocations = () => {
     fetch(`http://localhost:8000/locations`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
     })
-      .then((res) => res.json())
-      .then((data) => {
-        setLocations(data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    .then((res) => res.json())
+    .then((data) => {
+      setLocations(data);
+    })
+    .catch((err) => console.log(err));
+  };
 
-  useEffect(() => {
+  const fetchPriceRanges = () => {
     fetch(`http://localhost:8000/price_ranges`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
     })
-      .then((res) => res.json())
-      .then((data) => {
-        setPriceRanges(data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    .then((res) => res.json())
+    .then((data) => {
+      setPriceRanges(data);
+    })
+    .catch((err) => console.log(err));
+  };
 
   const onSubmit = (formData) => {
     console.log('Form submitted:', formData);
-    // Handle form submission logic here
+    fetch(`http://localhost:8000/houses`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log('House added:', data);
+      reset(); 
+    })
+    .catch((err) => console.error('Error adding house:', err));
   };
 
   return (
@@ -182,4 +200,5 @@ const AddHouseForm = () => {
 };
 
 export default AddHouseForm;
+
 
